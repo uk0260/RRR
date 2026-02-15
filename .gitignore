@@ -1,0 +1,90 @@
+# This .gitignore file is based on the Unity standard .gitignore from gitignore.io
+# It's been consolidated and organized for clarity.
+
+# Unity generated files
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Pp]roject[Tt]emp/
+
+# Visual Studio / Rider / IDE generated files
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+*.sln.DotSettings
+
+# MacOS
+.DS_Store
+.DS_Store?
+._*
+
+# Thumbs
+Thumbs.db
+Desktop.ini
+
+# Build results
+*.apk
+*.aab
+*.unitypackage
+*.assetbundle
+*.app
+*.ipa
+*.xcode/
+build/
+*.xcarchive/
+
+# Package Manager
+/Packages/manifest.json
+/Packages/packages-lock.json
+
+# TextMesh Pro
+# Assets/TextMesh Pro/
+
+# Optional: Uncomment if you want to ignore all .meta files within ignored folders.
+# This avoids Git thinking that the .meta files are deleted when their corresponding asset is ignored.
+# Library/**/*.meta
+# Temp/**/*.meta
+# obj/**/*.meta
+# Build/**/*.meta
+# Builds/**/*.meta
+# Logs/**/*.meta
+# UserSettings/**/*.meta
+
+# User specific ignores that you don't want to share
+# These are often generated automatically by Unity or IDEs based on local settings.
+# UserSettings/EditorUserSettings.asset
+# UserSettings/Layouts/
+# UserSettings/PlayModeUserSettings.asset
+# UserSettings/Search.index
+# UserSettings/Search.settings
+
+# Other common ignores
+*.backup
+*.bak
+*.orig
+*.swp
+*.zip
+*.rar
+*.7z
+*.gz
+*.tar
+*.log
+*.sqlite
+*.sqlite3
