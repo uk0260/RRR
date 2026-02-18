@@ -22,6 +22,7 @@ public class SaveData
     // 예: 현재 씬 이름, 플레이어 이름 등
     // public string currentSceneName;
     // public string playerName;
-    // 헤헤
+    public int currency;
+    
 }
 

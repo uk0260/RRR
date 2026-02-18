@@ -36,6 +36,90 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    private SaveData _currentSaveData;
+    private string _currentSlotName;
+
+    // 현재 로드된 게임 데이터를 가져옵니다.
+    public SaveData CurrentSaveData
+    {
+        get { return _currentSaveData; }
+    }
+
+    // 현재 활성화된 슬롯 이름을 가져옵니다.
+    public string CurrentSlotName
+    {
+        get { return _currentSlotName; }
+    }
+
+    // 게임을 로드하고 현재 슬롯으로 설정합니다.
+    public SaveData LoadGameAndSetCurrent(string slotName)
+    {
+        SaveData loadedData = LoadGame(slotName);
+        if (loadedData != null)
+        {
+            _currentSaveData = loadedData;
+            _currentSlotName = slotName;
+        } else {
+            // 새 게임 시작 등의 경우를 대비해 currentSaveData를 null로 초기화
+            _currentSaveData = null;
+            _currentSlotName = null;
+        }
+        return loadedData;
+    }
+
+    // 현재 로드된 데이터를 저장합니다.
+    public void SaveCurrentGame()
+    {
+        if (_currentSaveData != null && !string.IsNullOrEmpty(_currentSlotName))
+        {
+            SaveGame(_currentSlotName, _currentSaveData);
+        }
+        else
+        {
+            Debug.LogWarning("SaveManager: No current game data or slot name to save.");
+        }
+    }
+
+    // 재화를 추가하는 함수
+    public void AddCurrency(int amount)
+    {
+        if (_currentSaveData != null)
+        {
+            _currentSaveData.currency += amount;
+            Debug.Log($"Added {amount} currency. Current currency: {_currentSaveData.currency}");
+            SaveCurrentGame(); // 변경사항 저장
+        }
+        else
+        {
+            Debug.LogWarning("SaveManager: No current game data to add currency to.");
+        }
+    }
+
+    // 재화를 차감하는 함수
+    public bool SubtractCurrency(int amount)
+    {
+        if (_currentSaveData != null)
+        {
+            if (_currentSaveData.currency >= amount)
+            {
+                _currentSaveData.currency -= amount;
+                Debug.Log($"Subtracted {amount} currency. Current currency: {_currentSaveData.currency}");
+                SaveCurrentGame(); // 변경사항 저장
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning($"SaveManager: Not enough currency to subtract {amount}. Current: {_currentSaveData.currency}");
+                return false; // 재화가 부족하여 차감 실패
+            }
+        }
+        else
+        {
+            Debug.LogWarning("SaveManager: No current game data to subtract currency from.");
+            return false;
+        }
+    }
+
     // 현재 게임 데이터를 SaveData 객체로 저장 (슬롯 이름 지정)
     public void SaveGame(string slotName, SaveData dataToSave)
     {
